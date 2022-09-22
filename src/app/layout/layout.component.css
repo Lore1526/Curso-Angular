@@ -1,0 +1,28 @@
+.menu-layout{
+   width:16%; 
+   height: 1000px;
+   background-color: #c2e5f2; 
+}
+
+.layout-flex{
+    display:flex; 
+    width:100%;
+     height: 100%;
+}
+
+.layout-toolbar{
+    width:84%; 
+    height:1000px;
+     display:flex; 
+     flex-wrap:wrap;
+}
+
+.layout-bar{
+    width:100%; 
+    height:50px;
+}
+
+.layout-main{
+   width:100%; 
+   height:950px;
+}
