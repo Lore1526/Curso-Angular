@@ -1,3 +1,4 @@
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -7,6 +8,11 @@ import { MenuComponent } from './menu/menu.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MainComponent } from './main/main.component';
 import { ProductoComponent } from './producto/producto.component';
+import { StudentComponent } from './student/student.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { AddEditStudentComponent } from './student/add-edit-student/add-edit-student.component';
+
 
 @NgModule({
   declarations: [
@@ -15,13 +21,16 @@ import { ProductoComponent } from './producto/producto.component';
     MenuComponent,
     ToolbarComponent,
     MainComponent,
-    ProductoComponent
+    ProductoComponent,
+    StudentComponent,
+    AddEditStudentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
