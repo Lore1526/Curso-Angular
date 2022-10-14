@@ -1,1 +1,34 @@
-<p>add-edit-student works!</p>
+<div class="row mt-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Número de Alumno</label>
+                <input type="text" formControlName="id" name="id" class="form-control"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" [disabled]="true">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Nombre y apellido del alumno</label>
+                <input type="text" formControlName="name" name="name" class="form-control"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <span class="help-block" *ngIf="name?.touched && name?.errors?.['required']">Este Campo es
+                    Obligatorio</span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Curso</label>
+                <input type="text" formControlName="course" name="course" class="form-control"
+                    id="exampleInputPassword1">
+                <span class="help-block" *ngIf="course?.touched && course?.errors?.['required']">Este Campo es
+                    Obligatorio</span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Horario</label>
+                <input type="text" formControlName="hourCourse" name="hourCourse" class="form-control" id="exampleInputPassword1">
+                <span class="help-block" *ngIf="hourCourse?.touched && hourCourse?.errors?.['required']">Este Campo es
+                    Obligatorio</span>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!studentForm.valid">Guardar</button>
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>
