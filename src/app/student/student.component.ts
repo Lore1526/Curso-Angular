@@ -1,3 +1,4 @@
+import { StudentServiceService } from './student-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Student } from './student';
@@ -52,10 +53,10 @@ export class StudentComponent implements OnInit {
   dataSource: Student[] = [];
 
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private studentService: StudentServiceService) { }
 
   ngOnInit(): void {
-    this.dataSource = students;
+    this.dataSource = this.studentService.getStudent();
   }
 
   navigateToAddEditStudent():void{

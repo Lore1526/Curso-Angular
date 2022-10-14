@@ -8,10 +8,17 @@
                     id="exampleInputEmail1" aria-describedby="emailHelp" [disabled]="true">
             </div>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Nombre y apellido del alumno</label>
+                <label for="exampleInputEmail1" class="form-label">Nombre</label>
                 <input type="text" formControlName="name" name="name" class="form-control"
                     id="exampleInputEmail1" aria-describedby="emailHelp" required>
                 <span class="help-block" *ngIf="name?.touched && name?.errors?.['required']">Este Campo es
+                    Obligatorio</span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Apellido</label>
+                <input type="text" formControlName="surname" name="surname" class="form-control"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <span class="help-block" *ngIf="surname?.touched && surname?.errors?.['required']">Este Campo es
                     Obligatorio</span>
             </div>
             <div class="mb-3">
