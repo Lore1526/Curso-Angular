@@ -60,8 +60,8 @@ export class AddEditStudentComponent implements OnInit {
 
   }
 
-  onSubmit() {
-    let student = this.studentService.getStudentById(Number(this.id?.value));
+  async onSubmit() {
+    let student = this.studentService.getStudentById(Number(this.id?.value)).subscribe();
     if (student) {
       this.studentService.updateStudent({
         Id: Number(this.id?.value),
@@ -71,7 +71,7 @@ export class AddEditStudentComponent implements OnInit {
         HourCourse: String(this.hourCourse?.value)
       });
     } else {
-      this.studentService.addStudent({
+      await this.studentService.addStudent({
         Id: Number(this.id?.value),
         Name: String(this.name?.value),
         Surname: String(this.surname?.value),

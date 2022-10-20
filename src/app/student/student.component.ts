@@ -58,7 +58,9 @@ export class StudentComponent implements OnInit {
   constructor(private router: Router, private studentService: StudentServiceService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.dataSource = this.studentService.getStudent();
+    this.studentService.getStudent().subscribe(
+      (students) => this.dataSource = students
+    );
   }
 
   navigateToAddEditStudent(): void {
@@ -76,7 +78,7 @@ export class StudentComponent implements OnInit {
     });
   }
 
-  editStudent(student: Student):void{
+  editStudent(student: Student): void {
     this.router.navigate(['/addEditStudent', student]);
   }
 }

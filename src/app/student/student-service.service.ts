@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { find } from 'rxjs';
+import { filter, find, from, Observable, observable, of } from 'rxjs';
 import { Student } from './student';
 
 
@@ -25,19 +25,26 @@ export class StudentServiceService {
 
   constructor() { }
 
-  addStudent(student: Student): any[] {
+  addStudent(student: Student): Promise<Student[]> {
     this.students = [...this.students, student];
-    return this.students;
+       return new Promise((resolve, reject) => {
+      if (!reject) {
+        return resolve(this.students)
+      }
+    });
   }
 
-  getStudent(): Student[] {
-    return this.students;
+  getStudent(): Observable<Student[]> {
+    return of(this.students);
   }
 
-  getStudentById(studentId: number): any {
-    return this.students.find(r => r.Id === studentId);
+  getStudentById(studentId: number): Observable<any> {
+    return from(this.students).pipe(
+      filter(x => x.Id === studentId)
+    )
+ 
   }
-  updateStudent(student: Student): void {
+  updateStudent(student: Student): void{
     let students = [...this.students.filter(r => r.Id !== student.Id), student];
     let studentOrdered = [...students].sort((a, b) => {
       if (a["Id"] < b["Id"]) {
