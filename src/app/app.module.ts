@@ -14,6 +14,8 @@ import { AddEditStudentComponent } from './student/add-edit-student/add-edit-stu
 import { AppRoutingModule } from './app-routingModule';
 import { CombineNameAndSurnamePipe } from './student/combine-name-and-surname.pipe';
 import { TitleSizeDirective } from './student/title-size.directive';
+import { DeleteStudentComponent } from './student/delete-student/delete-student.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { TitleSizeDirective } from './student/title-size.directive';
     StudentComponent,
     AddEditStudentComponent,
     CombineNameAndSurnamePipe,
-    TitleSizeDirective
+    TitleSizeDirective,
+    DeleteStudentComponent
   ],
   imports: [
     BrowserModule,

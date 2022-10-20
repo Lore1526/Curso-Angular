@@ -1,7 +1,9 @@
+import { DeleteStudentComponent } from './delete-student/delete-student.component';
 import { StudentServiceService } from './student-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Student } from './student';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface PeriodicElement {
   name: string;
@@ -53,14 +55,25 @@ export class StudentComponent implements OnInit {
   dataSource: Student[] = [];
 
 
-  constructor(private router:Router, private studentService: StudentServiceService) { }
+  constructor(private router: Router, private studentService: StudentServiceService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataSource = this.studentService.getStudent();
   }
 
-  navigateToAddEditStudent():void{
+  navigateToAddEditStudent(): void {
     this.router.navigate(['/addEditStudent']);
   }
 
+  deleteStudent(element: Student): void {
+    const dialogRef = this.dialog.open(DeleteStudentComponent, {
+      width: '250px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == "Yes") {
+        this.dataSource = this.dataSource.filter(r => r.Id !== element.Id);
+      }
+      console.log(result);
+    });
+  }
 }
