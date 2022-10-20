@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { find } from 'rxjs';
 import { Student } from './student';
 
 
@@ -8,6 +9,7 @@ import { Student } from './student';
 })
 
 export class StudentServiceService {
+
   students: Student[] = [
     { Id: 1, Name: 'Juan', Surname: 'Perez', Course: 'A', HourCourse: 'Mañana' },
     { Id: 2, Name: 'Pedro', Surname: 'Garcia', Course: 'A', HourCourse: 'Noche' },
@@ -32,4 +34,22 @@ export class StudentServiceService {
     return this.students;
   }
 
+  getStudentById(studentId: number): any {
+    return this.students.find(r => r.Id === studentId);
+  }
+  updateStudent(student: Student): void {
+    let students = [...this.students.filter(r => r.Id !== student.Id), student];
+    let studentOrdered = [...students].sort((a, b) => {
+      if (a["Id"] < b["Id"]) {
+        return -1;
+      }
+
+      if (a["Id"] > b["Id"]) {
+        return 1;
+      }
+      return 0;
+    });
+    this.students = [...studentOrdered]
+  }
 }
+

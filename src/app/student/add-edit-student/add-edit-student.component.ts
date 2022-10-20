@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -22,7 +22,12 @@ export class AddEditStudentComponent implements OnInit {
   @Input() student: any;
 
 
-  constructor(private builder: FormBuilder, private studentService: StudentServiceService,private router : Router) {
+  constructor(private builder: FormBuilder, private studentService: StudentServiceService, private router: Router, private route: ActivatedRoute) {
+    this.studentForm.controls['id'].setValue(this.route.snapshot.paramMap.get('Id'));
+    this.studentForm.controls['name'].setValue(this.route.snapshot.paramMap.get('Name'));
+    this.studentForm.controls['surname'].setValue(this.route.snapshot.paramMap.get('Surname'));
+    this.studentForm.controls['course'].setValue(this.route.snapshot.paramMap.get('Course'),);
+    this.studentForm.controls['hourCourse'].setValue(this.route.snapshot.paramMap.get('HourCourse'));
   }
   get id(): AbstractControl | null {
     return this.studentForm.get('id');
@@ -52,16 +57,29 @@ export class AddEditStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   onSubmit() {
-    this.studentService.addStudent({
-      Id: Number(this.id?.value),
-      Name: String(this.name?.value),
-      Surname: String(this.surname?.value),
-      Course: String(this.course?.value),
-      HourCourse: String(this.hourCourse?.value)
-    });
+    let student = this.studentService.getStudentById(Number(this.id?.value));
+    if (student) {
+      this.studentService.updateStudent({
+        Id: Number(this.id?.value),
+        Name: String(this.name?.value),
+        Surname: String(this.surname?.value),
+        Course: String(this.course?.value),
+        HourCourse: String(this.hourCourse?.value)
+      });
+    } else {
+      this.studentService.addStudent({
+        Id: Number(this.id?.value),
+        Name: String(this.name?.value),
+        Surname: String(this.surname?.value),
+        Course: String(this.course?.value),
+        HourCourse: String(this.hourCourse?.value)
+      });
+    }
+
     this.router.navigate(['/student']);
     this.studentForm.reset();
   }

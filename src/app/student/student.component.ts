@@ -73,7 +73,10 @@ export class StudentComponent implements OnInit {
       if (result == "Yes") {
         this.dataSource = this.dataSource.filter(r => r.Id !== element.Id);
       }
-      console.log(result);
     });
+  }
+
+  editStudent(student: Student):void{
+    this.router.navigate(['/addEditStudent', student]);
   }
 }
