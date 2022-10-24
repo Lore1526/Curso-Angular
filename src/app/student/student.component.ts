@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Student } from './student';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-student',
@@ -17,6 +17,8 @@ export class StudentComponent implements OnInit {
   displayedColumns: string[] = ['Id', 'Name', 'Course', 'HourCourse', 'edit', 'delete'];
   dataSource: Student[] = [];
   studentsSubscription!: Subscription;
+  testStudents$! : Observable<Student[]>;
+
 
   constructor(private router: Router, private studentService: StudentServiceService, public dialog: MatDialog) { }
 
@@ -24,6 +26,7 @@ export class StudentComponent implements OnInit {
     this.studentsSubscription = this.studentService.getStudent().subscribe(
       (students) => this.dataSource = students
     );
+    this.testStudents$ = this.studentService.getStudent();
   }
 
   ngOnDestroy(): void {
