@@ -1,0 +1,17 @@
+.font-text{
+    text-align: center;
+    font-size: 15px;
+}
+.font-title{
+    text-align: center;
+    font-size: 20px;
+    background-color:#FFC9E3;
+}
+.font-button{
+    margin-top: 20px;
+    font-size: 12px;
+    width: 90px;
+    background-color: #7b1fa2;
+    border: #7b1fa2;
+    margin-left: 25px;
+}
