@@ -9,6 +9,7 @@ import { MainComponent } from './main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModuleRoutingModule } from './app-routing-module/app-routing-module-routing.module';
 import { CourseModuleModule } from './courses/course-module/course-module.module';
+import { InscriptionModuleModule } from './inscription/inscription-module/inscription-module.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CourseModuleModule } from './courses/course-module/course-module.module
     BrowserAnimationsModule,
     AppRoutingModuleRoutingModule,
     StudentModuleModule,
-    CourseModuleModule
+    CourseModuleModule,
+    InscriptionModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

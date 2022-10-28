@@ -1,0 +1,41 @@
+<div class="row mt-5">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <form [formGroup]="InscriptionForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Número de Curso</label>
+                <input type="text" formControlName="id" name="id" class="form-control"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" [disabled]="true">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Curso</label>
+                <input type="text" formControlName="course" name="course" class="form-control"
+                    id="exampleInputPassword1">
+                <span class="help-block" *ngIf="course?.touched && course?.errors?.['required']">Este Campo es
+                    Obligatorio</span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                <input type="text" formControlName="name" name="name" class="form-control"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <span class="help-block" *ngIf="name?.touched && name?.errors?.['required']">Este Campo es
+                    Obligatorio</span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Apellido</label>
+                <input type="text" formControlName="surname" name="surname" class="form-control"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                <span class="help-block" *ngIf="surname?.touched && surname?.errors?.['required']">Este Campo es
+                    Obligatorio</span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Price</label>
+                <input type="text" formControlName="price" name="price" class="form-control" id="exampleInputPassword1">
+                <span class="help-block" *ngIf="price?.touched && price?.errors?.['required']">Este Campo es
+                    Obligatorio</span>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!InscriptionForm.valid">Guardar</button>
+        </form>
+    </div>
+    <div class="col-md-1"></div>
+</div>
