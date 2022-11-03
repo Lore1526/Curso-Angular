@@ -1,5 +1,9 @@
 import { CourseService } from './course-service';
 import { Component, OnInit } from '@angular/core';
+import { Course } from './course';
+import { DeleteCourseComponent } from './delete-course/delete-course.component';
+import { MatDialog } from '@angular/material/dialog';
+import { filter, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
@@ -7,14 +11,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-  Courses$: any;
 
-  constructor(private courseService: CourseService) {
+  Courses!: Course[];
 
-   }
+  constructor(private courseService: CourseService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.Courses$ = this.courseService.getCourses();
+   this.courseService.getCourses().subscribe(x => this.Courses = x);
   }
 
+  RemoveItem(id: number) {
+    this.Courses = this.Courses.filter(r => r.Id !== id);
+    }
 }
+
+

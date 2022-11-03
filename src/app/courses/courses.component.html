@@ -1,6 +1,6 @@
 <div class="col-md-2 mt-5 "><button class="btn btn-primary font-button">Nuevo
     Curso</button></div>
 <div style="display:flex; width:100%;flex-wrap: wrap;  ">
-    <app-detail-course [detail] = "course"   *ngFor="let course of Courses$ | async "></app-detail-course>
+    <app-detail-course (newItemEvent)="RemoveItem($event)" [detail] = "course"   *ngFor="let course of Courses"></app-detail-course>
 </div>
 

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>¡Atención!</h1>
+<div mat-dialog-content>
+    ¿Esta seguro de eliminar este curso?
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="onNoClick()">Cancelar</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="onYesClick()">Aceptar</button>
+</div>
