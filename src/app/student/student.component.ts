@@ -24,7 +24,9 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentsSubscription = this.studentService.getStudent().subscribe(
-      (students) => this.dataSource = students
+      (students) => {
+        this.dataSource = students
+      }
     );
     this.testStudents$ = this.studentService.getStudent();
   }

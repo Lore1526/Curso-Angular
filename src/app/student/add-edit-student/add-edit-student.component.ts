@@ -61,27 +61,33 @@ export class AddEditStudentComponent implements OnInit {
   }
 
   async onSubmit() {
-    let student = this.studentService.getStudentById(Number(this.id?.value)).subscribe();
-    if (student) {
-      this.studentService.updateStudent({
-        Id: Number(this.id?.value),
-        Name: String(this.name?.value),
-        Surname: String(this.surname?.value),
-        Course: String(this.course?.value),
-        HourCourse: String(this.hourCourse?.value)
-      });
-    } else {
-      await this.studentService.addStudent({
-        Id: Number(this.id?.value),
-        Name: String(this.name?.value),
-        Surname: String(this.surname?.value),
-        Course: String(this.course?.value),
-        HourCourse: String(this.hourCourse?.value)
-      });
-    }
-
-    this.router.navigate(['/student']);
-    this.studentForm.reset();
+    let student = this.studentService.getStudentById(Number(this.id?.value)).subscribe(z => {
+      console.log(z);
+      if (student) {
+        this.studentService.updateStudent({
+          Id: Number(this.id?.value),
+          Name: String(this.name?.value),
+          Surname: String(this.surname?.value),
+          Course: String(this.course?.value),
+          HourCourse: String(this.hourCourse?.value)
+        });
+      } else {
+        console.log("chau");
+        this.studentService.addStudent({
+          Id: Number(this.id?.value),
+          Name: String(this.name?.value),
+          Surname: String(this.surname?.value),
+          Course: String(this.course?.value),
+          HourCourse: String(this.hourCourse?.value)
+        }).subscribe(r => {
+          console.log("chau2");
+          this.router.navigate(['/student']);
+          this.studentForm.reset();
+        });
+      }
+    });
+    // this.router.navigate(['/student']);
+    // this.studentForm.reset();
   }
 
 }

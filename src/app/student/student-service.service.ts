@@ -10,7 +10,7 @@ import { Student } from './student';
 
 export class StudentServiceService {
 
-  private studentUrl = 'https://63643c0b7b209ece0f43457e.mockapi.io/api/v1/student';
+  private studentUrl = 'https://63643c0b7b209ece0f43457e.mockapi.io/api/v1/students';
   // students: Student[] = [
   //   { Id: 1, Name: 'Juan', Surname: 'Perez', Course: 'A', HourCourse: 'Mañana' },
   //   { Id: 2, Name: 'Pedro', Surname: 'Garcia', Course: 'A', HourCourse: 'Noche' },
@@ -26,10 +26,14 @@ export class StudentServiceService {
 
   constructor(private http: HttpClient) { }
 
-  addStudent(student: Student): Observable<Student[]> {
-    return this.getStudent().pipe(
-      map((students: any[]) => students.concat(student))
-    );
+  addStudent(student: Student): Observable<Student>{
+    // return this.getStudent().pipe(
+    //   map((students: any[]) => students.concat(student))
+    // );
+    console.log("hola");
+  //  this.http.post(this.studentUrl,student);
+   return this.http.post<Student>(this.studentUrl,student);
+  //  return this.http.get<Student[]>(this.studentUrl);
   }
 
   getStudent(): Observable<Student[]> {
@@ -37,28 +41,33 @@ export class StudentServiceService {
   }
 
   getStudentById(studentId: number): Observable<Student> {
-    return this.getStudent().pipe(
-      map((students: any[]) => students.find(p => p.Id === studentId))
-    );
+    console.log(studentId)
+    return this.http.get<Student>(this.studentUrl + "?Id=" + studentId );
+    // return this.getStudent().pipe(
+    //   map((students: any[]) => students.find(p => p.Id === studentId))
+    // );
   }
 
   updateStudent(student: Student): void {
-    let nStudents: Student[] = [];
-    this.getStudent().pipe(
-      map((students: any[]) => nStudents = students.filter(p => p.Id !== student.Id))).subscribe(
-        z => {
-          return [...nStudents, student].sort((a, b) => {
-            if (a["Id"] < b["Id"]) {
-              return -1;
-            }
+  
+  this.http.put(this.studentUrl,student);
 
-            if (a["Id"] > b["Id"]) {
-              return 1;
-            }
-            return 0;
-          });
-        }
-      )
+  //   let nStudents: Student[] = [];
+  //   this.getStudent().pipe(
+  //     map((students: any[]) => nStudents = students.filter(p => p.Id !== student.Id))).subscribe(
+  //       z => {
+  //         return [...nStudents, student].sort((a, b) => {
+  //           if (a["Id"] < b["Id"]) {
+  //             return -1;
+  //           }
+
+  //           if (a["Id"] > b["Id"]) {
+  //             return 1;
+  //           }
+  //           return 0;
+  //         });
+  //       }
+  //     )
   }
 }
 
