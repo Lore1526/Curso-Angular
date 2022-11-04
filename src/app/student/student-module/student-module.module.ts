@@ -7,6 +7,7 @@ import { StudentComponent } from '../student.component';
 import { TitleSizeDirective } from '../title-size.directive';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from 'src/app/guard/auth.guard';
 
 
 
@@ -33,3 +34,4 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ]
 })
 export class StudentModuleModule { }
+

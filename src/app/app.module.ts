@@ -1,3 +1,5 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
 import { StudentModuleModule } from './student/student-module/student-module.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,6 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModuleRoutingModule } from './app-routing-module/app-routing-module-routing.module';
 import { CourseModuleModule } from './courses/course-module/course-module.module';
 import { InscriptionModuleModule } from './inscription/inscription-module/inscription-module.module';
+import { LoginComponent } from './login/login.component';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './guard/auth.guard';
 
 
 @NgModule({
@@ -18,7 +24,8 @@ import { InscriptionModuleModule } from './inscription/inscription-module/inscri
     LayoutComponent,
     MenuComponent,
     ToolbarComponent,
-    MainComponent
+    MainComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +33,12 @@ import { InscriptionModuleModule } from './inscription/inscription-module/inscri
     AppRoutingModuleRoutingModule,
     StudentModuleModule,
     CourseModuleModule,
-    InscriptionModuleModule
+    InscriptionModuleModule,
+    AngularMaterialModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

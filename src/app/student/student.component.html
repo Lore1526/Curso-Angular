@@ -57,11 +57,3 @@
     </div>
     <div class="col-md-1"></div>
 </div>
-<div class="row mt-5">
-    <div class="col-md-4"></div>
-    <div class="col-md-7">
-        <p *ngFor="let student of testStudents$ | async">{{student.Id}}, {{student |
-            combineNameAndSurname}},{{student.Course}},{{student.HourCourse}}</p>
-    </div>
-    <div class="col-md-1"></div>
-</div>
