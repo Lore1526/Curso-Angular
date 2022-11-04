@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter, find, , map, Observable, observable, of, Subscription } from 'rxjs';
+import { filter, find, map, Observable, observable, of, Subscription } from 'rxjs';
 import { Student } from './student';
-
 
 
 @Injectable({
@@ -27,12 +26,10 @@ export class StudentServiceService {
 
   constructor(private http: HttpClient) { }
 
-  addStudent(student: Student): Observable<Student[]>{
-   this.getStudent().subscribe(
-    r => {
-      return of( [...r, student]);
-    }
-   )
+  addStudent(student: Student): Observable<Student[]> {
+    return this.getStudent().pipe(
+      map((students: any[]) => students.concat(student))
+    );
   }
 
   getStudent(): Observable<Student[]> {
@@ -44,8 +41,6 @@ export class StudentServiceService {
       map((students: any[]) => students.find(p => p.Id === studentId))
     );
   }
- 
-  
 
   updateStudent(student: Student): void {
     let nStudents: Student[] = [];
@@ -56,7 +51,7 @@ export class StudentServiceService {
             if (a["Id"] < b["Id"]) {
               return -1;
             }
-      
+
             if (a["Id"] > b["Id"]) {
               return 1;
             }
