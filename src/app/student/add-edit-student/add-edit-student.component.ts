@@ -13,7 +13,7 @@ import { StudentServiceService } from '../student-service.service';
 export class AddEditStudentComponent implements OnInit {
   studentForm = new FormGroup({
     id: new FormControl(),
-    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     surname: new FormControl('', [Validators.required, Validators.minLength(3)]),
     course: new FormControl('', [Validators.required, Validators.minLength(1)]),
     hourCourse: new FormControl('', Validators.required),
@@ -61,34 +61,30 @@ export class AddEditStudentComponent implements OnInit {
   }
 
   async onSubmit() {
-    let student = this.studentService.getStudentById(Number(this.id?.value)).subscribe(z => {
-      console.log(z);
-      if (student) {
-        this.studentService.updateStudent({
-          Id: Number(this.id?.value),
-          Name: String(this.name?.value),
-          Surname: String(this.surname?.value),
-          Course: String(this.course?.value),
-          HourCourse: String(this.hourCourse?.value)
-        });
-      } else {
-        console.log("chau");
-        this.studentService.addStudent({
-          Id: Number(this.id?.value),
-          Name: String(this.name?.value),
-          Surname: String(this.surname?.value),
-          Course: String(this.course?.value),
-          HourCourse: String(this.hourCourse?.value)
-        }).subscribe(r => {
-          console.log("chau2");
-          this.router.navigate(['/student']);
-          this.studentForm.reset();
-        });
-      }
-    });
-    // this.router.navigate(['/student']);
-    // this.studentForm.reset();
+    if (Number(this.id?.value) == 0) {
+      this.studentService.addStudent({
+        Id: Number(Math.random),
+        Name: String(this.name?.value),
+        Surname: String(this.surname?.value),
+        Course: String(this.course?.value),
+        HourCourse: String(this.hourCourse?.value)
+      }).subscribe(r => {
+        this.router.navigate(['/student']);
+        this.studentForm.reset();
+      });
+    } else {
+      this.studentService.updateStudent({
+        Id: Number(this.id?.value),
+        Name: String(this.name?.value),
+        Surname: String(this.surname?.value),
+        Course: String(this.course?.value),
+        HourCourse: String(this.hourCourse?.value)
+      }).subscribe(r => {
+        this.router.navigate(['/student']);
+        this.studentForm.reset();
+      });
+
+    }
   }
 
 }
-

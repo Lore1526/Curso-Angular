@@ -28,7 +28,6 @@ export class StudentComponent implements OnInit {
         this.dataSource = students
       }
     );
-    this.testStudents$ = this.studentService.getStudent();
   }
 
   ngOnDestroy(): void {
@@ -45,7 +44,9 @@ export class StudentComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == "Yes") {
-        this.dataSource = this.dataSource.filter(r => r.Id !== element.Id);
+        this.studentService.deleteStudent(element.Id).subscribe(z => {
+          this.dataSource = this.dataSource.filter(r => r.Id !== element.Id);
+        });
       }
     });
   }

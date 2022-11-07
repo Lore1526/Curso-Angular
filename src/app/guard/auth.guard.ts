@@ -24,8 +24,6 @@ export class AuthGuard implements CanActivate {
 
         let users = await this.userService.getUsers().toPromise();
         let user = users!.find(z => z.UserName == username && z.Password == password);
-      console.log(users);
-      console.log(user);
         if (typeof user !== 'undefined') {
             return true;
         }

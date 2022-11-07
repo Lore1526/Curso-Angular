@@ -47,7 +47,6 @@ export class InscriptionComponent implements OnInit {
   }
 
   editInscription(inscription: Inscription): void {
-    console.log(inscription)
     this.router.navigate(['/addEditInscription', inscription]);
   }
 }

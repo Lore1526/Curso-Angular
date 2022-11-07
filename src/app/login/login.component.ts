@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
         let users = await this.userService.getUsers().toPromise();
         let user = users!.find(z => z.UserName == this.username && z.Password == this.password);
 
-        console.log(user);
         if (typeof user !== 'undefined') {
             sessionStorage.setItem('UserName', user.UserName);
             sessionStorage.setItem('Password', user.Password);

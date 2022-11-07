@@ -25,7 +25,6 @@ export class DetailCourseComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == "Yes") {
-        console.log(id);
         this.newItemEvent.emit(id);
       }
     });
