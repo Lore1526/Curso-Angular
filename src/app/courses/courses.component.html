@@ -1,4 +1,4 @@
-<div class="col-md-2 mt-5" style="margin-left: 150px; margin-bottom:10px;"><button class="btn btn-primary font-button">Nuevo
+<div class="col-md-2 mt-5" style="margin-left: 150px; margin-bottom:10px;"><button class="btn btn-primary font-button" (click)="navigateToAddEditCourse()">Nuevo
     Curso</button></div>
 <div style="display:flex; width:100%;flex-wrap: wrap; margin-left: 80px; ">
     <app-detail-course (newItemEvent)="RemoveItem($event)" [detail] = "course"   *ngFor="let course of Courses"></app-detail-course>

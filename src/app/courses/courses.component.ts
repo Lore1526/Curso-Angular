@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CourseService } from './course-service';
 import { Component, OnInit } from '@angular/core';
 import { Course } from './course';
@@ -14,15 +15,21 @@ export class CoursesComponent implements OnInit {
 
   Courses!: Course[];
 
-  constructor(private courseService: CourseService, public dialog: MatDialog) {}
+  constructor(private courseService: CourseService, public dialog: MatDialog, private router: Router, private CourseService: CourseService) { }
 
   ngOnInit(): void {
-   this.courseService.getCourses().subscribe(x => this.Courses = x);
+    this.courseService.getCourse().subscribe(x => this.Courses = x);
   }
 
   RemoveItem(id: number) {
-    this.Courses = this.Courses.filter(r => r.Id !== id);
-    }
+    this.CourseService.deleteCourse(id).subscribe(x => {
+      this.Courses = this.Courses.filter(r => r.Id !== id);
+    })
+  }
+
+  navigateToAddEditCourse(): void {
+    this.router.navigate(['/addEditCourse']);
+  }
 }
 
 
