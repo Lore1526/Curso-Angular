@@ -83,7 +83,6 @@ export class AddEditStudentComponent implements OnInit {
         this.router.navigate(['/student']);
         this.studentForm.reset();
       });
-
     }
   }
 

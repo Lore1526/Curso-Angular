@@ -41,7 +41,9 @@ export class InscriptionComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == "Yes") {
-        this.dataSource = this.dataSource.filter(r => r.Id !== element.Id);
+        this.inscriptionService.deleteInscription(element.Id).subscribe(z => {
+          this.dataSource = this.dataSource.filter(r => r.Id !== element.Id);
+        });
       }
     });
   }

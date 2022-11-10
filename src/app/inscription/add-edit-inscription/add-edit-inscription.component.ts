@@ -5,7 +5,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { InscriptionServiceService } from '../inscription-service.service';
 
 @Component({
-  selector: 'app-add-edit-student',
+  selector: 'app-add-edit-inscription',
   templateUrl: './add-edit-inscription.component.html',
   styleUrls: ['./add-edit-inscription.component.css']
 })
@@ -58,28 +58,29 @@ export class AddEditInscriptionComponent implements OnInit {
   }
 
   async onSubmit() {
-    let Inscription = this.InscriptionService.getInscriptionById(Number(this.id?.value)).subscribe();
-    if (Inscription) {
-      this.InscriptionService.updateInscription({
-        Id: Number(this.id?.value),
-        Name: String(this.name?.value),
-        Surname: String(this.surname?.value),
-        Course: String(this.course?.value),
-        Price: Number(this.price?.value)
-      });
-    } else {
+    if (Number(this.id?.value) == 0) {
       await this.InscriptionService.addInscription({
         Id: Number(this.id?.value),
         Name: String(this.name?.value),
         Surname: String(this.surname?.value),
         Course: String(this.course?.value),
         Price: Number(this.price?.value)
+      }).subscribe(r => {
+        this.router.navigate(['/inscription']);
+        this.InscriptionForm.reset();
+      });
+    } else {
+      await this.InscriptionService.updateInscription({
+        Id: Number(this.id?.value),
+        Name: String(this.name?.value),
+        Surname: String(this.surname?.value),
+        Course: String(this.course?.value),
+        Price: Number(this.price?.value)
+      }).subscribe(r => {
+        this.router.navigate(['/inscription']);
+        this.InscriptionForm.reset();
       });
     }
-
-    this.router.navigate(['/Inscription']);
-    this.InscriptionForm.reset();
   }
-
 }
 
