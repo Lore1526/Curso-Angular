@@ -1,9 +1,9 @@
+import { StudentModuleModule } from './../student-module/student-module.module';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MockInstance, ngMocks } from 'ng-mocks';
 import { DeleteStudentComponent } from './delete-student.component';
 import { DefaultTitleStrategy, TitleStrategy } from "@angular/router";
-import { StudentModuleModule } from '../student-module/student-module.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
@@ -17,6 +17,8 @@ describe('DeleteStudentComponent', () => {
     TestBed.configureTestingModule({
       declarations: [DeleteStudentComponent],
       imports: [
+        // ngMocks.guts(StudentModuleModule);
+
         CommonModule,
         AngularMaterialModule,
         FormsModule,
