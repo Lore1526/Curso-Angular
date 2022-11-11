@@ -1,8 +1,8 @@
-import { CombineNameAndSurnamePipe } from './combine-name-and-surname.pipe';
+// import { CombineNameAndSurnamePipe } from './combine-name-and-surname.pipe';
 
-describe('CombineNameAndSurnamePipe', () => {
-  it('create an instance', () => {
-    const pipe = new CombineNameAndSurnamePipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+// describe('CombineNameAndSurnamePipe', () => {
+//   it('create an instance', () => {
+//     const pipe = new CombineNameAndSurnamePipe();
+//     expect(pipe).toBeTruthy();
+//   });
+// });

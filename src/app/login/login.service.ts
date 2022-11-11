@@ -26,16 +26,6 @@ export class UserService {
             );
     }
 
-    // AddUser(user: IUser) {
-    //     return this.http.post(this.userUrl, user).
-    //         pipe(catchError(this.handleError));
-    // }
-
-    // UpdateUser(user: IUser) {
-    //     return this.http.put(this.userUrl, user).
-    //         pipe(catchError(this.handleError));
-    // }
-
     private handleError(err: HttpErrorResponse): Observable<never> {
         let errorMessage = '';
         if (err.error instanceof ErrorEvent) {
@@ -47,6 +37,11 @@ export class UserService {
         }
         console.error(errorMessage);
         return throwError(errorMessage);
+    }
+
+    logOut(): void{
+        sessionStorage.setItem('UserName', '');
+        sessionStorage.setItem('Password', '');
     }
 
 }
