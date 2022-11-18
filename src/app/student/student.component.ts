@@ -1,5 +1,5 @@
 import { DeleteStudentComponent } from './delete-student/delete-student.component';
-import { StudentServiceService } from './student-service.service';
+import { StudentService } from './student-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Student } from './student';
@@ -20,7 +20,7 @@ export class StudentComponent implements OnInit {
   testStudents$! : Observable<Student[]>;
 
 
-  constructor(private router: Router, private studentService: StudentServiceService, public dialog: MatDialog) { }
+  constructor(private router: Router, private studentService: StudentService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.studentsSubscription = this.studentService.getStudent().subscribe(

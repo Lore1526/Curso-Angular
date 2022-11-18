@@ -3,7 +3,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../student';
-import { StudentServiceService } from '../student-service.service';
+import { StudentService } from '../student-service.service';
 
 @Component({
   selector: 'app-add-edit-student',
@@ -22,7 +22,7 @@ export class AddEditStudentComponent implements OnInit {
   @Input() student: any;
 
 
-  constructor(private builder: FormBuilder, private studentService: StudentServiceService, private router: Router, private route: ActivatedRoute) {
+  constructor(private builder: FormBuilder, private studentService: StudentService, private router: Router, private route: ActivatedRoute) {
     this.studentForm.controls['id'].setValue(this.route.snapshot.paramMap.get('Id'));
     this.studentForm.controls['name'].setValue(this.route.snapshot.paramMap.get('Name'));
     this.studentForm.controls['surname'].setValue(this.route.snapshot.paramMap.get('Surname'));

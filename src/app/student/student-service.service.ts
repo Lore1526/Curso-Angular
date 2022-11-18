@@ -8,7 +8,7 @@ import { Student } from './student';
   providedIn: 'root'
 })
 
-export class StudentServiceService {
+export class StudentService {
   
 
   private studentUrl = 'https://63643c0b7b209ece0f43457e.mockapi.io/api/v1/students';
@@ -28,7 +28,6 @@ export class StudentServiceService {
   }
 
   updateStudent(student: Student): Observable<any> {
-
     return this.http.put(this.studentUrl + "/" + student.Id, student);
   }
   deleteStudent(id: number) {
