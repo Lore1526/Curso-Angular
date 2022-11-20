@@ -20,7 +20,9 @@ export class StudentComponent implements OnInit {
   testStudents$! : Observable<Student[]>;
 
 
-  constructor(private router: Router, private studentService: StudentService, public dialog: MatDialog) { }
+  constructor(private router: Router, 
+            private studentService: StudentService, 
+            public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.studentsSubscription = this.studentService.getStudent().subscribe(
