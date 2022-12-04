@@ -15,7 +15,6 @@ describe('StudentComponent', () => {
   let fixture: ComponentFixture<StudentComponent>;
   let router :any;
   let studentService: StudentService;
-  let httpTestingController : any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -94,5 +93,4 @@ describe('StudentComponent', () => {
 
     expect(serviceSpy).toHaveBeenCalledWith(students[0].Id);
   })
-
 });
