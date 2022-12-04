@@ -52,6 +52,7 @@ describe('StudentComponent', () => {
 
     component.ngOnInit();
     expect(component.dataSource).toBe(students);
+    expect(studentService.getStudent).toHaveBeenCalledTimes(1);
   });
 
   it('navigateToAddEditStudent:should navigate to addEditStudent', () =>{
